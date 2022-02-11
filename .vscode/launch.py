@@ -11,7 +11,7 @@ from requests.auth import HTTPBasicAuth
 
 root = "https://api.challenge.hennge.com/challenges/003"
 content_type = "application/json"
-userid = "jannelson36@gmail.com"
+userid = "EMAIL"
 secret_suffix = "HENNGECHALLENGE003"
 shared_secret = userid+secret_suffix
 
@@ -43,7 +43,7 @@ def TOTP(K, digits=10, timeref = 0, timestep = 30):
     C = int ( time.time() - timeref ) // timestep
     return HOTP(K, C, digits = digits)
 
-data = { "github_url": "https://gist.github.com/jannelson36/160b3a744b5294f23ca4e4f14acfcfec", "contact_email": "jannelson36@gmail.com" }
+data = { "github_url": "https://gist.github.com/USER_NAME/GIST_ID", "contact_email": "EMAIL" }
 
 passwd = TOTP(shared_secret, 10, T0, timestep).zfill(10) 
 resp = requests.post(root, auth=HTTPBasicAuth(userid, passwd), data=json.dumps(data))
